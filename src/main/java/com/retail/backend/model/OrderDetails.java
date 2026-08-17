@@ -13,7 +13,7 @@ public class OrderDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;     
 
     @NotNull(message = "Customer is required")
     @ManyToOne(fetch = FetchType.EAGER)
