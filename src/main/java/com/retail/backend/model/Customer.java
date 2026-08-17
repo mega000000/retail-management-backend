@@ -3,6 +3,7 @@ package com.retail.backend.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -23,6 +24,9 @@ public class Customer {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderDetails> orders;
 
     public Customer() {}
 
@@ -63,5 +67,13 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<OrderDetails> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderDetails> orders) {
+        this.orders = orders;
     }
 }
